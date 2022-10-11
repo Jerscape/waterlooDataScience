@@ -1,0 +1,59 @@
+#we had an assignment whereby we had to create a function that accepted two coordinates for a rectnagle (it's opposing corners) AND then a list of other coordinates
+#it then had to evaluate whether ALL of the coordinates were within that rectagle, and return a boolean 
+
+def isIn(firstCorner=(0,0), secondCorner=(0,0), pointList=[]):
+        count = 0
+        x1, y1 = firstCorner
+        x2, y2 = secondCorner 
+
+        for x in pointList:
+            xp, yp = x
+
+            if (x1 >= x2):
+                #if y1 is greater than or equal y2
+                if (y1 >= y2):
+                    #test if xp is less than x1 AND greater or equal than x2 AND if yp is less than or equal y1 and greater than or equal to y2
+                    if ((xp <= x1 and xp >= x2) and (yp <= y1 and yp >=y2)): 
+                        count = count+1
+
+                #else ify1 is less than y2
+                elif (y1 <= y2):
+                #test if xp is less or equal to x1 AND greater than or equal to x2 AND is yp is less than or equal to y2 and greater than y1
+                    if ((xp <= x1 and xp >= x2) and (yp >= y1 and yp <=y2)): 
+                    #result equals within
+                        count = count+1
+                
+            #if x1 is less than or equal x2
+            elif(x1 <= x2): 
+            #if y1 is greater than y2
+                if(y1 >= y2):
+                #test if xp is greater than/equal to x1 AND less than/equal to x2 AND yp is less than or equal y1 and greater than or equal to y2
+                    if((xp >= x1 and xp <=x2) and (yp <= y1 and yp >=y2)):
+                        #result equals within
+                        count = count+1
+
+            #elif y1 is less then or equal than y2
+                elif(y1 <=y2):
+                #test if xp is greater than/equal to x2 AND less than/equal to x1 AND yp is is greater than or euqal y1 or less than equal to y2
+                    if((xp >=x1 and xp <=x2) and (yp >= y1 and yp <=y2)):
+                    #result is within
+                        count = count+1
+
+        listLength = len(pointList)
+        #print(str(count)+ "/" + str(len(pointList)))
+        if count == listLength:
+            result = True
+        else:
+            result = False
+        
+        #returing list only in testing phase, final should return true or false only
+        #return assessmentList
+        return result
+
+#this is my test of the function. It should return (in order) True, False, Falso, True
+
+print(isIn(firstCorner=(10,7), secondCorner=(5,3), pointList=[(0,1), (6,6), (8,5)])) 
+print(isIn(firstCorner=(10,7), secondCorner=(5,3), pointList=[(7,6), (6,6), (8,5)]))
+print(isIn(firstCorner=(-2, 8), secondCorner=(10, 15), pointList=[(-1,9), (3,10), (7,11), (9,12)]))
+print(isIn(firstCorner=(-2, 8), secondCorner=(10, 15), pointList=[(-3,9), (3,10) ]))
+
